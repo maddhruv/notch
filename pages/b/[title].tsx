@@ -17,7 +17,7 @@ interface Props {
 
 const BlogPost: NextPage<Props> = ({ page, siteConfig }) => {
   const {
-    pageProperties: { title, created_at },
+    pageProperties: { title, created_at, desription },
   } = page;
 
   const { isDarkMode } = useDarkMode();
@@ -38,6 +38,7 @@ const BlogPost: NextPage<Props> = ({ page, siteConfig }) => {
         <title>
           {title} - {siteConfig.name}
         </title>
+        <meta name="description" content={desription} />
       </Head>
       <Title title={title} />
       <p className="mb-8 dark:text-white-dark">{created_at}</p>

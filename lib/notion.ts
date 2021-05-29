@@ -1,7 +1,13 @@
 import { Client } from "@notionhq/client";
 import { NotionAPI } from "notion-client";
 import { getSiteConfig } from "./siteConfig";
-import { getPageTitle, getFormattedDate } from "./utils";
+import {
+  getPageTitle,
+  getFormattedDate,
+  getTags,
+  getCover,
+  getDescription,
+} from "./utils";
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 });
@@ -33,14 +39,10 @@ export const getPages = async (): Promise<Page[]> => {
         id: page.id,
         created_at: getFormattedDate(page.created_time),
         updated_at: getFormattedDate(page.last_edited_time),
-        // @ts-ignore
-        tags: page.properties.Tags.multi_select.map((tag) => tag.name),
-        // @ts-ignore
+        tags: getTags(page.properties),
         title: getPageTitle(page.properties),
-        // @ts-ignore
-        cover: page.properties.Cover.url,
-        // @ts-ignore
-        description: page.properties.Description.rich_text[0].plain_text,
+        cover: getCover(page.properties),
+        description: getDescription(page.properties),
       };
     })
     .filter((page) => !!page) as Page[];
@@ -51,6 +53,7 @@ export interface PageRenderer {
   pageProperties: {
     title: string;
     created_at: string;
+    desription: string;
   };
 }
 
@@ -70,6 +73,7 @@ export const getPage = async (title: string): Promise<PageRenderer> => {
     pageProperties: {
       title: getPageTitle(page.properties),
       created_at: getFormattedDate(page.created_time),
+      desription: getDescription(page.properties),
     },
   };
 };

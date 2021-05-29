@@ -17,6 +17,7 @@ const Index: NextPage<Props> = ({ pages, siteConfig }) => {
     <div>
       <Head>
         <title>{siteConfig.name}</title>
+        <meta name="description" content={`${siteConfig.name} - Blog`} />
       </Head>
       <Title title={siteConfig.name} />
       <div id="posts" className="flex flex-wrap">

@@ -33,7 +33,7 @@ const PostCard: React.FC<Props> = ({
     <Link href={`/b/${title.split(" ").join("-")}`}>
       <div className={postWrapperClassNames}>
         <div className={imageWrapperClassNames}>
-          <img src={cover} className={imageClassNames} />
+          <img src={cover} className={imageClassNames} alt={title} />
         </div>
         <div className={contentWrapperClassNames}>
           <p className={dateClassNames}>{created_at}</p>
