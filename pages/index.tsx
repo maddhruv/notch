@@ -29,7 +29,7 @@ const Index: NextPage<Props> = ({ pages, siteConfig }) => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const pages = await getPages();
   const siteConfig = getSiteConfig();
 

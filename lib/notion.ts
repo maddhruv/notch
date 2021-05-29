@@ -8,6 +8,7 @@ import {
   getCover,
   getDescription,
 } from "./utils";
+
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 });

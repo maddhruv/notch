@@ -6,7 +6,7 @@ import { NotionRenderer } from "react-notion-x";
 import Title from "../../components/Title";
 import { useDarkMode } from "../../components/DarkMode";
 
-import { getPage, PageRenderer } from "../../lib/notion";
+import { getPage, PageRenderer, getPages } from "../../lib/notion";
 import { getSiteConfig, SiteConfig } from "../../lib/siteConfig";
 import { isSSR } from "../../lib/utils";
 
@@ -47,13 +47,22 @@ const BlogPost: NextPage<Props> = ({ page, siteConfig }) => {
   );
 };
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const title = context.params.title;
 
   const page = await getPage(title);
   const siteConfig = getSiteConfig();
 
   return { props: { page, siteConfig } };
+}
+
+export async function getStaticPaths() {
+  const pages = await getPages();
+
+  return {
+    paths: pages.map((page) => `/b/${page.title.split(" ").join("-")}`),
+    fallback: false,
+  };
 }
 
 export default BlogPost;
