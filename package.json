@@ -1,0 +1,39 @@
+{
+  "name": "notch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "prepare": "npx types-sync"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@notionhq/client": "^0.1.8",
+    "clsx": "^1.1.1",
+    "dayjs": "^1.10.5",
+    "lodash.merge": "^4.6.2",
+    "next": "^10.2.3",
+    "notion-client": "^4.6.2",
+    "nprogress": "^0.2.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-notion-x": "^4.6.3",
+    "types-sync": "^2.1.0",
+    "typescript": "^4.3.2"
+  },
+  "devDependencies": {
+    "@types/autoprefixer": "^10.2.0",
+    "@types/lodash.merge": "^4.6.6",
+    "@types/nprogress": "^0.2.0",
+    "@types/react": "^17.0.8",
+    "@types/react-dom": "^17.0.5",
+    "autoprefixer": "^10.2.6",
+    "postcss": "^8.3.0",
+    "tailwindcss": "^2.1.2"
+  }
+}
