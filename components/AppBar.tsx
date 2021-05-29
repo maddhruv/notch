@@ -16,7 +16,7 @@ const AppBar: React.FC<Props> = ({ title, logo }: Props) => {
             {logo ? (
               <img className="rounded-full" src={logo} />
             ) : (
-              title.charAt(0)
+              title?.charAt(0)
             )}
           </div>
         </Link>

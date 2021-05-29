@@ -18,8 +18,8 @@ function MyApp({ Component, pageProps }) {
   return (
     <DarkModeProvider>
       <AppBar
-        title={pageProps.siteConfig.name}
-        logo={pageProps.siteConfig.logo}
+        title={pageProps?.siteConfig?.name}
+        logo={pageProps?.siteConfig?.logo}
       />
       <Container>
         <Component {...pageProps} />

@@ -46,7 +46,15 @@ export const getPages = async (): Promise<Page[]> => {
     .filter((page) => !!page) as Page[];
 };
 
-export const getPage = async (title: string) => {
+export interface PageRenderer {
+  recordMap: any;
+  pageProperties: {
+    title: string;
+    created_at: string;
+  };
+}
+
+export const getPage = async (title: string): Promise<PageRenderer> => {
   const pageSearch = await notion.search({
     query: title,
   });

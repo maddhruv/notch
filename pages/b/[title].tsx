@@ -6,11 +6,16 @@ import { NotionRenderer } from "react-notion-x";
 import Title from "../../components/Title";
 import { useDarkMode } from "../../components/DarkMode";
 
-import { getPage } from "../../lib/notion";
-import { getSiteConfig } from "../../lib/siteConfig";
+import { getPage, PageRenderer } from "../../lib/notion";
+import { getSiteConfig, SiteConfig } from "../../lib/siteConfig";
 import { isSSR } from "../../lib/utils";
 
-const BlogPost: NextPage = ({ page, siteConfig }) => {
+interface Props {
+  page: PageRenderer;
+  siteConfig: SiteConfig;
+}
+
+const BlogPost: NextPage<Props> = ({ page, siteConfig }) => {
   const {
     pageProperties: { title, created_at },
   } = page;
