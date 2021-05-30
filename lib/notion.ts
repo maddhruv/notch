@@ -38,10 +38,10 @@ export const getPages = async (): Promise<Page[]> => {
         id: page.id,
         created_at: getFormattedDate(page.created_time),
         updated_at: getFormattedDate(page.last_edited_time),
-        tags: getTags(page.properties),
+        tags: getTags(page.properties) ?? null,
         title: getPageTitle(page.properties),
-        cover: getCover(page.properties) || null,
-        description: getDescription(page.properties) || null,
+        cover: getCover(page.properties) ?? null,
+        description: getDescription(page.properties) ?? null,
       };
     })
     .filter((page) => !!page) as Page[];
@@ -68,8 +68,8 @@ export const getPage = async (title: string): Promise<PageRenderer> => {
     pageProperties: {
       title: getPageTitle(page.properties),
       created_at: getFormattedDate(page.created_time),
-      description: getDescription(page.properties),
-      cover: getCover(page.properties),
+      description: getDescription(page.properties) ?? null,
+      cover: getCover(page.properties) ?? null,
     },
   };
 };
