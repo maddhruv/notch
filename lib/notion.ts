@@ -51,11 +51,7 @@ export const getPages = async (): Promise<Page[]> => {
 
 export interface PageRenderer {
   recordMap: any;
-  pageProperties: {
-    title: string;
-    created_at: string;
-    desription: string;
-  };
+  pageProperties: Pick<Page, 'title' | 'created_at' | 'description' | 'cover'>
 }
 
 export const getPage = async (title: string): Promise<PageRenderer> => {
@@ -74,7 +70,8 @@ export const getPage = async (title: string): Promise<PageRenderer> => {
     pageProperties: {
       title: getPageTitle(page.properties),
       created_at: getFormattedDate(page.created_time),
-      desription: getDescription(page.properties),
+      description: getDescription(page.properties),
+      cover: getCover(page.properties)
     },
   };
 };

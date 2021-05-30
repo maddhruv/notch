@@ -17,7 +17,7 @@ interface Props {
 
 const BlogPost: NextPage<Props> = ({ page, siteConfig }) => {
   const {
-    pageProperties: { title, created_at, desription },
+    pageProperties: { title, created_at, description, cover },
   } = page;
 
   const { isDarkMode } = useDarkMode();
@@ -38,10 +38,11 @@ const BlogPost: NextPage<Props> = ({ page, siteConfig }) => {
         <title>
           {title} - {siteConfig.name}
         </title>
-        <meta name="description" content={desription} />
+        <meta name="description" content={description} />
       </Head>
       <Title title={title} />
       <p className="mb-8 dark:text-white-dark">{created_at}</p>
+      {cover && <img src={cover} className="w-1/2 mb-4 mx-auto thumbnail" />}
       <NotionRenderer recordMap={page.recordMap} darkMode={isDarkMode} />
     </div>
   );
