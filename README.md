@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="https://notch-psi.vercel.app/">
-    <img src="https://notch-psi.vercel.app/" alt="notch" />
+    <img src="https://notch-psi.vercel.app/notch.png/" width="128" alt="notch" />
     <br />
     Notch
   </a>
