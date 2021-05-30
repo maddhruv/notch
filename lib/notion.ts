@@ -1,14 +1,7 @@
-import { Client } from "@notionhq/client";
-import { NotionAPI } from "notion-client";
-import { getSiteConfig } from "./siteConfig";
-import {
-  getPageTitle,
-  getFormattedDate,
-  getTags,
-  getCover,
-  getDescription,
-  getPublished
-} from "./utils";
+import { Client } from '@notionhq/client';
+import { NotionAPI } from 'notion-client';
+import { getSiteConfig } from './siteConfig';
+import { getPageTitle, getFormattedDate, getTags, getCover, getDescription, getPublished } from './utils';
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
@@ -37,7 +30,7 @@ export const getPages = async (): Promise<Page[]> => {
       // @ts-ignore
       if (!page.properties.Name.title.length) return false;
 
-      const isPublished = getPublished(page.properties)
+      const isPublished = getPublished(page.properties);
 
       if (!isPublished) return false;
 
@@ -56,7 +49,7 @@ export const getPages = async (): Promise<Page[]> => {
 
 export interface PageRenderer {
   recordMap: any;
-  pageProperties: Pick<Page, 'title' | 'created_at' | 'description' | 'cover'>
+  pageProperties: Pick<Page, 'title' | 'created_at' | 'description' | 'cover'>;
 }
 
 export const getPage = async (title: string): Promise<PageRenderer> => {
@@ -76,7 +69,26 @@ export const getPage = async (title: string): Promise<PageRenderer> => {
       title: getPageTitle(page.properties),
       created_at: getFormattedDate(page.created_time),
       description: getDescription(page.properties),
-      cover: getCover(page.properties)
+      cover: getCover(page.properties),
     },
   };
+};
+
+export const getSearch = async (query: string) => {
+  if (!query) return [];
+  const pageSearch = await notion.search({
+    query,
+    filter: {
+      value: 'page',
+      property: 'object',
+    },
+  });
+
+  return pageSearch.results.map((page) => {
+    return {
+      id: page.id,
+      title: getPageTitle(page.properties),
+      description: getDescription(page.properties),
+    };
+  });
 };
