@@ -30,6 +30,10 @@ body {
   padding: 0;
 }
 
+.thumbnail {
+  aspect-ratio: 16 / 9;
+}
+
 #nprogress {
   pointer-events: none;
 }
