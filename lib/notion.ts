@@ -42,8 +42,8 @@ export const getPages = async (): Promise<Page[]> => {
         updated_at: getFormattedDate(page.last_edited_time),
         tags: getTags(page.properties),
         title: getPageTitle(page.properties),
-        cover: getCover(page.properties),
-        description: getDescription(page.properties),
+        cover: getCover(page.properties) || null,
+        description: getDescription(page.properties) || null,
       };
     })
     .filter((page) => !!page) as Page[];
