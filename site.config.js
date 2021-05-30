@@ -1,6 +1,6 @@
 module.exports = {
-  name: "Dhruv Jain",
+  name: "Notch",
   notion: {
-    databaseId: "a32591e2ec9145bfa332408cadf3e668",
+    databaseId: "cd5ae361ca31492282b0914928c82e7e",
   },
 };

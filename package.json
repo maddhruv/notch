@@ -1,7 +1,7 @@
 {
   "name": "notch",
   "version": "1.0.0",
-  "description": "",
+  "description": "Nextjs + Notion powered blog",
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
