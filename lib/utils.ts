@@ -12,4 +12,6 @@ export const getCover = (properties) => properties?.Cover?.url;
 export const getDescription = (properties) =>
   properties?.Description?.rich_text[0]?.plain_text;
 
+export const getPublished = (properties) => properties?.Published?.select?.name === 'Yes' ? true : false;
+
 export const isSSR = typeof window === "undefined";

@@ -7,6 +7,7 @@ import {
   getTags,
   getCover,
   getDescription,
+  getPublished
 } from "./utils";
 
 const notion = new Client({
@@ -35,6 +36,10 @@ export const getPages = async (): Promise<Page[]> => {
     .map((page) => {
       // @ts-ignore
       if (!page.properties.Name.title.length) return false;
+
+      const isPublished = getPublished(page.properties)
+
+      if (!isPublished) return false;
 
       return {
         id: page.id,
