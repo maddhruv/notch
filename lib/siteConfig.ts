@@ -1,4 +1,4 @@
-import merge from "lodash.merge";
+import merge from 'lodash.merge';
 
 export interface SiteConfig {
   /**
@@ -19,21 +19,26 @@ export interface SiteConfig {
      */
     databaseId: string;
   };
+  /**
+   * your site url - localhost or something.vercel.app
+   */
+  siteURL: string;
 }
 
 const defaultConfig: SiteConfig = {
-  name: "Dhruv Jain",
+  name: 'Dhruv Jain',
   notion: {
-    databaseId: "as",
+    databaseId: 'as',
   },
+  siteURL: 'http://localhost:3000',
 };
 
 export const getSiteConfig = (): SiteConfig => {
   let siteConfig = {};
   try {
-    siteConfig = require("../site.config.js");
+    siteConfig = require('../site.config.js');
   } catch (err) {
-    console.warn("No site config was found, will use the defaults");
+    console.warn('No site config was found, will use the defaults');
   }
 
   return merge(defaultConfig, siteConfig);

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getSearch } from '../lib/notion';
+
 import { getSiteConfig } from '../lib/siteConfig';
 
 const Search = ({ searchResults }) => {
@@ -20,13 +20,15 @@ const Search = ({ searchResults }) => {
   );
 };
 
-export async function getServerSideProps(context) {
-  const query = context.query.q;
-
-  const searchResults = await getSearch(query);
+Search.getInitialProps = async (context) => {
+  const query = context?.query?.q;
   const siteConfig = getSiteConfig();
 
-  return { props: { searchResults, siteConfig } };
-}
+  const response = await fetch(`${siteConfig.siteURL}/api/search/${Array.isArray(query) ? query[0] : query}`);
+
+  const searchResults = await response.json();
+
+  return { searchResults };
+};
 
 export default Search;
