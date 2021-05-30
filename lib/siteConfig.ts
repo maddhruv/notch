@@ -31,7 +31,7 @@ const defaultConfig: SiteConfig = {
 export const getSiteConfig = (): SiteConfig => {
   let siteConfig = {};
   try {
-    siteConfig = require("/site.config.js");
+    siteConfig = require("../site.config.js");
   } catch (err) {
     console.warn("No site config was found, will use the defaults");
   }
