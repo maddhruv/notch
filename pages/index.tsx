@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 
 import Title from '../components/Title';
 import PostCard from '../components/PostCard';
@@ -19,6 +20,17 @@ const Index: NextPage<Props> = ({ pages, siteConfig }) => {
         <title>{siteConfig.name}</title>
         <meta name='description' content={`${siteConfig.name} - Blog`} />
       </Head>
+      <NextSeo
+        title={siteConfig.name}
+        description={siteConfig.name}
+        openGraph={{
+          title: siteConfig.name,
+          url: `${siteConfig.siteURL}`,
+          description: siteConfig.name,
+          images: [{ url: siteConfig.logo }],
+          site_name: siteConfig.name,
+        }}
+      />
       <Title title={siteConfig.name} />
       <div id='posts' className='flex flex-wrap'>
         {pages.map((page, index) => (

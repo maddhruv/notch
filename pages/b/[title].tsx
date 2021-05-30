@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { NotionRenderer } from 'react-notion-x';
+import { NextSeo } from 'next-seo';
+import { useRouter } from 'next/router';
 
 import Title from '../../components/Title';
 import { useDarkMode } from '../../components/DarkMode';
@@ -19,6 +21,8 @@ const BlogPost: NextPage<Props> = ({ page, siteConfig }) => {
   const {
     pageProperties: { title, created_at, description, cover },
   } = page;
+
+  const router = useRouter();
 
   const { isDarkMode } = useDarkMode();
 
@@ -39,6 +43,17 @@ const BlogPost: NextPage<Props> = ({ page, siteConfig }) => {
         </title>
         <meta name='description' content={description} />
       </Head>
+      <NextSeo
+        title={title}
+        description={description}
+        openGraph={{
+          title: title,
+          url: `${siteConfig.siteURL}${router.asPath}`,
+          description: description,
+          images: [{ url: cover }],
+          site_name: siteConfig.name,
+        }}
+      />
       <Title title={title} />
       <p className='mb-8 dark:text-white-dark'>{created_at}</p>
       {cover && <img src={cover} className='w-1/2 mb-4 mx-auto thumbnail' />}

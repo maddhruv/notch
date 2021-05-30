@@ -19,6 +19,7 @@
     "lodash.merge": "^4.6.2",
     "next": "^10.2.3",
     "next-offline": "^5.0.5",
+    "next-seo": "^4.24.0",
     "notion-client": "^4.6.2",
     "nprogress": "^0.2.0",
     "react": "^17.0.2",
