@@ -18,7 +18,7 @@ const PostCard: React.FC<Props> = ({
   index,
 }: Props) => {
   const postWrapperClassNames = clsx(
-    "flex mb-4 lg:mb-8 px-4 w-full postcard flex-col",
+    "flex mb-4 lg:mb-8 lg:px-4 w-full postcard flex-col",
     index === 0 ? "lg:flex-row" : "lg:w-1/3 lg:flex-col"
   );
   const imageWrapperClassNames = clsx("mr-8 w-full", index !== 0 && "w-full");
@@ -37,10 +37,10 @@ const PostCard: React.FC<Props> = ({
         </div>
         <div className={contentWrapperClassNames}>
           <p className={dateClassNames}>{created_at}</p>
-          <h2 className="text-2xl lg:text-3xl font-bold mb-2 lg:mb-4 text-primary-regular">
+          <h2 className="text-2xl lg:text-3xl font-bold mb-1 lg:mb-4 text-primary-regular">
             {title}
           </h2>
-          <h3 className="text-xl lg:text-2xl dark:text-white-dark">
+          <h3 className="text-base lg:text-2xl dark:text-white-dark">
             {description}
           </h3>
         </div>
